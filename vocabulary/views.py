@@ -9,7 +9,7 @@ from django.utils.module_loading import import_string
 
 class CategoriesView(View):
     def get(self, request, *args, **kwargs):
-        serializer = vocabulary.customserializers.CategoriesSerialiser();
+        serializer = vocabulary.customserializers.CategorySerialiser();
         return HttpResponse(serializer.serialize(vocabulary.models.Categories.objects.all()), content_type='application/json')
 class ThemesView(View):
     def get(self, request, id = None, *args, **kwargs):

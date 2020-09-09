@@ -18,12 +18,12 @@ class ThemeAdmin(admin.ModelAdmin):
 
 admin.site.register(mod.Theme, ThemeAdmin)
 
-class CategoriesAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     readonly_fields = ['icon_tag']
 
 class WordAdmin(admin.ModelAdmin):
     readonly_fields = ['pronunciation_tag']
-admin.site.register(mod.Categories, CategoriesAdmin)
+admin.site.register(mod.Categories, CategoryAdmin)
 admin.site.register(mod.Word, WordAdmin)
 
 admin.site.register(mod.Level)

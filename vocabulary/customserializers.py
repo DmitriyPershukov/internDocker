@@ -26,7 +26,7 @@ class ThemesSerialiser(Serializer):
         json.dump(data, self.stream, **self.json_kwargs)
         self._current = None
 
-class CategoriesSerialiser(Serializer):
+class CategorySerialiser(Serializer):
     def end_object(self, obj):
         # self._current has the field data
         indent = self.options.get("indent")

@@ -20,6 +20,8 @@ class Categories(models.Model):
         return self.name
     def icon_tag(self):
         return mark_safe('<img src="%s" width="150" height="150" />' % (self.icon))
+    class Meta:
+        verbose_name_plural = "Categories"
 
     icon_tag.short_description = 'Image'
 
