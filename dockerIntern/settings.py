@@ -136,6 +136,6 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-API_SECRET = '23'
+API_SECRET = os.environ.get('API_SECRET')
 
 
