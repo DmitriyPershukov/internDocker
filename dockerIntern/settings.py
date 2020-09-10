@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-#import dj_database_url
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,17 +22,14 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dockerIntern.settings")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #=)!kzmbclz%dcrg$6mi5+dm0u5)rk!om=85vsv75v-19=z@bme
-SECRET_KEY = os.environ.get("SECRET_KEY", "ffgfghgfhgh")
+SECRET_KEY = os.environ.get("SECRET_KEY", "ffgfghghgh")
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
-ALLOWED_HOSTS = []
-#ALLOWED_HOSTS = ["vocabularyper.herokuapp.com", "localhost" ,"127.0.0.1" ]
-for a in os.environ.get("DJANGO_ALLOWED_HOSTS").split(' '):
-    ALLOWED_HOSTS.append(a)
 
+ALLOWED_HOSTS = ["vocabularyper.herokuapp.com", "localhost" ,"127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
@@ -83,13 +80,13 @@ WSGI_APPLICATION = 'dockerIntern.wsgi.application'
 
 
 DATABASES = {
-    "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE"),
-        "NAME": os.environ.get("SQL_DATABASE"),
-        "USER": os.environ.get("SQL_USER"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD"),
-        "HOST": os.environ.get("SQL_HOST"),
-        "PORT": os.environ.get("SQL_PORT"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'vocabularydb',
+        'USER': 'postgres',
+        'PASSWORD': 'Guo645333645',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
@@ -137,5 +134,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 API_SECRET = os.environ.get('API_SECRET')
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=500, ssl_require=True)
+DATABASES['default'].update(db_from_env)
 
 

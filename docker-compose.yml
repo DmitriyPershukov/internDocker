@@ -1,3 +1,4 @@
+
   version: '3'
 
   services:
@@ -6,20 +7,17 @@
       volumes:
         - postgres_data:/var/lib/postgresql/data/
       env_file:
-        - ./vocdb.env
+        - ./.env
 
     web:
       build: .
-      command: gunicorn dockerIntern.wsgi:application --bind 0.0.0.0:8000
-      volumes:
-        - static_volume:/home/app/web/staticfiles
+      command: gunicorn dockerIntern.wsgi:application --bind 0.0.0.0:$PORT
       ports:
         - "8000:8000"
       env_file:
-        - ./vc.env
+        - ./.env
       depends_on:
         - db
 
   volumes:
     postgres_data:
-    static_volume:
