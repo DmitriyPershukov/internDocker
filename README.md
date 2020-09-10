@@ -26,14 +26,14 @@ SQL_PORT=5432
 API_SECRET=secret
  ```
  
-- open cli run commands in root folder of project
+- open cli run command in root folder of project
 
 ```
 docker-compose up -d --build
 
 ```
 
-- run these command in new cli, then press CTRL+C
+- run these commands in new cli, then press CTRL+C
 ```
 docker-compose  exec web python manage.py migrate --noinput
 docker-compose  exec web python manage.py collectstatic --noinput --clear
@@ -41,7 +41,7 @@ docker-compose  exec web python manage.py collectstatic --noinput --clear
  
 # Starting web server
 
-- run these command from root folder of project in cli
+- run this command from project root folder in cli
 ```
 docker-compose up -d
 ```
